@@ -19,12 +19,15 @@
 
 /* Key matrix configuration. */
 #define MATRIX_ROW_PINS \
-    { GP26, GP5, GP4, GP9 }
+    { GP29, GP26, GP5, GP4 }
+//{ GP29, GP26, GP5, GP4, GP9 }
 #define MATRIX_COL_PINS \
     { GP27, GP28, GP21, GP6, GP7, GP8 }
 
 /* Handedness. */
-#define MASTER_RIGHT
+//#define MASTER_RIGHT
+// use flash -bl uf2-split-left or -bl-split-right instead
+#define EE_HANDS
 
 // To use the handedness pin, resistors need to be installed on the adapter PCB.
 // If so, uncomment the following code, and undefine MASTER_RIGHT above.
@@ -32,7 +35,9 @@
 // #define SPLIT_HAND_PIN_LOW_IS_LEFT  // High -> right, Low -> left.
 
 /* RGB settings. */
-#define RGB_DI_PIN GP0
+// use 5v logic pin instead with seapicro
+#define RGB_DI_PIN GP25
+
 
 /* VBUS detection. */
 #define USB_VBUS_PIN GP19

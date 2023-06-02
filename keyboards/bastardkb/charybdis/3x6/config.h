@@ -20,12 +20,32 @@
 
 #define DIODE_DIRECTION ROW2COL
 
-/* Trackball angle adjustment. */
-#define ROTATIONAL_TRANSFORM_ANGLE -25
+/* Pointing device configuration. */
+
+// Enable use of pointing device on slave split.
+#define SPLIT_POINTING_ENABLE
+
+// Pointing device is on the right split.
+#define POINTING_DEVICE_RIGHT
+
+// Enables support for extended i16 mouse reports (instead of i8).
+#define MOUSE_EXTENDED_REPORT
+
+// Adjust trackpad rotation.
+#define POINTING_DEVICE_ROTATION_90
+
+// Configure for the Cirque model used on the Dilemma.
+#define CIRQUE_PINNACLE_DIAMETER_MM 40
+//#define CIRQUE_PINNACLE_CURVED_OVERLAY
+#define POINTING_DEVICE_GESTURES_SCROLL_ENABLE // Circular scroll.
+
+
+// /* Trackball angle adjustment. */
+// #define ROTATIONAL_TRANSFORM_ANGLE -25
 
 /* RGB settings. */
 #ifdef RGB_MATRIX_ENABLE
-#    define RGB_MATRIX_LED_COUNT 42
+#    define RGB_MATRIX_LED_COUNT 41
 #    define RGB_MATRIX_SPLIT \
-        { 21, 21 }
+        { 21, 20 }
 #endif

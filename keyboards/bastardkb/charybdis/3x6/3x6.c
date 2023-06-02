@@ -30,8 +30,18 @@
  *    1   4   7  10  13  16                     37  34  31  28  25  22
  * ├────────────────────────┤                 ├────────────────────────┤
  *    2   3   8   9  14  17                     38  35  30  29  24  23
- * ╰────────────────────────╯                 ╰────────────────────────╯
+ * ╰────────────────────────╯                 ╰────────────────────────╯ old
  *                       18  19  20     39  40  XX
+ *                     ╰────────────╯ ╰────────────╯
+ * 
+ * ╭────────────────────────╮                 ╭────────────────────────╮
+ *   20  19  18  17  16  15                     35  36  37  38  39  40
+ * ├────────────────────────┤                 ├────────────────────────┤
+ *    9  10  11  12  13  14                     34  33  32  31  30  29
+ * ├────────────────────────┤                 ├────────────────────────┤
+ *    8   7   6   5   4   3                     23  24  25  26  27  28
+ * ╰────────────────────────╯                 ╰────────────────────────╯  my wiring lol
+ *                        0   1   2     22  21  XX
  *                     ╰────────────╯ ╰────────────╯
  *
  * Note: the LED config simulates 42 LEDs instead of the actual 41 to prevent
@@ -41,33 +51,27 @@
 led_config_t g_led_config = { {
     /* Key Matrix to LED index. */
     // Left split.
-    {      0,      5,      6,     11,     12,     15 }, // Top row
-    {      1,      4,      7,     10,     13,     16 }, // Middle row
-    {      2,      3,      8,      9,     14,     17 }, // Bottom row
-    { NO_LED,     20, NO_LED,     18,     19, NO_LED }, // Thumb cluster
+    {     20,     19,     18,     17,     16,     15 }, // Top row
+    {      9,     10,     11,     12,     13,     14 }, // Middle row
+    {      8,      7,      6,      5,      4,      3 }, // Bottom row
+    { NO_LED, NO_LED, NO_LED,      0,      1,      2 }, // Thumb cluster
     // Right split.
-    {     21,     26,     27,     32,     33,     36 }, // Top row
-    {     22,     25,     28,     31,     34,     37 }, // Middle row
-    {     23,     24,     29,     30,     35,     38 }, // Bottom row
-    { NO_LED,     41, NO_LED,     39,     40, NO_LED }, // Thumb cluster
+    {     35,     36,     37,     38,     39,     40 }, // Top row
+    {     34,     33,     32,     31,     30,     29 }, // Middle row
+    {     23,     24,     25,     26,     27,     28 }, // Bottom row
+    {     22,     21, NO_LED, NO_LED, NO_LED, NO_LED }, // Thumb cluster
 }, {
     /* LED index to physical position. */
     // Left split.
-    /* index=0  */ {   0,   0 }, {   0,  21 }, {   0,  42 }, // col 1 (left most)
-    /* index=3  */ {  15,  42 }, {  15,  21 }, {  15,   0 }, // col 2
-    /* index=6  */ {  30,   0 }, {  30,  21 }, {  30,  42 },
-    /* index=9  */ {  45,  42 }, {  45,  21 }, {  45,   0 },
-    /* index=12 */ {  60,   0 }, {  60,  21 }, {  60,  42 },
-    /* index=15 */ {  75,   0 }, {  75,  21 }, {  75,  42 },
-    /* index=18 */ {  75,  64 }, {  90,  64 }, { 105,  64 }, // Thumb cluster
+    /* index=0  */ {  75,  64 }, {  90,  64 }, { 105,  64 }, // row 4 (bottom)
+    /* index=3  */ {  75,  42 }, {  60,  42 }, {  45,  42 }, {  30,  42 }, {  15,  42 }, {  0,  42 }, //row 3
+    /* index=9  */ {   0,  21 }, {  15,  21 }, {  30,  21 }, {  45,  21 }, {  60,  21 }, {  75, 21 }, //row 2
+    /* index=15 */ {  75,   0 }, {  60,   0 }, {  45,   0 }, {  30,   0 }, {  15,   0 }, {  0,   0 }, //row 1
     // Right split.
-    /* index=21 */ { 224,   0 }, { 224,  21 }, { 224,  42 }, // col 12 (right most)
-    /* index=24 */ { 209,  42 }, { 209,  21 }, { 209,   0 }, // col 10
-    /* index=27 */ { 194,   0 }, { 194,  21 }, { 194,  42 },
-    /* index=30 */ { 179,  42 }, { 179,  21 }, { 179,   0 },
-    /* index=33 */ { 164,   0 }, { 164,  21 }, { 164,  42 },
-    /* index=36 */ { 149,   0 }, { 149,  21 }, { 149,  42 },
-    /* index=39 */ { 119,  64 }, { 134,  64 }, {   0,   0 }, // Thumb cluster
+    /* index=21 */ { 136,  64 }, { 119,  64 }, // row 4 (bottom)
+    /* index=23 */ { 149,  42 }, { 164,  42 }, { 179,  42 }, { 194,  42 }, { 209,  42 }, { 224, 42 }, //row 3
+    /* index=29 */ { 224,  21 }, { 209,  21 }, { 194,  21 }, { 179,  21 }, { 164,  21 }, { 149, 21 }, //row 2
+    /* index=35 */ { 149,   0 }, { 179,   0 }, { 194,   0 }, { 209,   0 }, { 224,  0 },  { 164,  0 }, //row 1
 }, {
     /* LED index to flag. */
     // Left split.
@@ -79,7 +83,7 @@ led_config_t g_led_config = { {
     /* index=15 */ LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
     /* index=18 */ LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, // Thumb cluster
     // Right split.
-    /* index=21 */ LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, // col 10
+    /* index=21 */ LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, // col 10
     /* index=24 */ LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, // col 9
     /* index=27 */ LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,
     /* index=30 */ LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT, LED_FLAG_KEYLIGHT,

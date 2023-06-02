@@ -28,10 +28,10 @@
 #define POINTING_DEVICE_RIGHT
 
 // Limits the frequency that the sensor is polled for motion.
-#define POINTING_DEVICE_TASK_THROTTLE_MS 1
+#define POINTING_DEVICE_TASK_THROTTLE_MS 10
 
 // Invert X axis on mouse reports.
-#define POINTING_DEVICE_INVERT_X
+//#define POINTING_DEVICE_INVERT_X
 
 /* RGB matrix support. */
 #ifdef RGB_MATRIX_ENABLE
