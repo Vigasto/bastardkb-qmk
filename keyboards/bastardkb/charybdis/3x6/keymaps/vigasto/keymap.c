@@ -209,3 +209,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 };
 // clang-format on
+
+bool rgb_matrix_indicators_user(void){
+     const int led_count = 41;
+
+     for (int i = 0; i < led_count; i++){
+          // if (21==i || i==22)
+          //      rgb_matrix_set_color(i,64,0,64);
+          // else  if (9==i || i==8)
+          //      rgb_matrix_set_color(i,0,0,64);
+          // else
+               rgb_matrix_set_color(i, 64, 64, 64);
+     }
+
+     return true;
+}
